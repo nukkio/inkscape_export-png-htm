@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+	<name>Export PNG and HTM</name>
+	<id>exportPNGHTM</id>
+	<label>Export each selected objects to png and write .html and .js file with div pointing to exported images .</label>
+	<param name="tab" type="notebook">
+		<page name="controls" gui-text="Controls">
+			<label appearance="header">Export parameters</label>
+			<param name="export-type" type="enum" gui-text="Export layers as:" indent="1">
+					<item value="svg">SVG</item>
+					<item value="png">PNG</item>
+			</param>
+			<param name="path" type="path" mode="folder" gui-text="Export path:" indent="1"/>
+			<separator/>
+			<spacer/>
+
+			<label appearance="header">Batch export for all layers (no only selected in current layer)</label>
+			<param name="allLayers" type="boolean" gui-text="Batch export" indent="1">false</param>
+			<separator/>
+			<spacer/>
+
+			<label appearance="header">Create html-js-css folder+files structure</label>
+			<param name="createHtmlJsCss" type="boolean" gui-text="Create html structure" indent="1">false</param>
+			
+		</page>
+
+		<page name="exportoptions" gui-text="Export Options">
+			<param name="soloselez" type="boolean" gui-text="Hide all except selected for export" indent="1">false</param>
+			<param name="dpi" type="int" min="1" max="9999" gui-text="Export DPI:" indent="1">96</param>
+			<param name="tagliopagina"  type="boolean" gui-text="Cut to page">false</param>
+			<param name="space"  type="int" min="0" max="1000" gui-text="Margin:" indent="1">0</param>
+		</page>
+
+		<page name="naming" gui-text="File naming">
+			<param name="help" type="description" indent="1">Name parts</param>
+			<param name="sdoc" type="string" gui-text="base file name (#lay# -> layer name):">#lay#</param>
+			<param name="spre" type="string" gui-text="prefix" indent="1"/>
+			<param name="coordinate" type="boolean" gui-text="Add coordinates x_y" indent="1">true</param>
+			<param name="dimensioni" type="boolean" gui-text="Add dimension wxh" indent="1">true</param>
+			<param name="spost" type="string" gui-text="postfix" indent="1"/>
+			<separator/>
+			<spacer/>
+		</page>
+
+		<page name="help" gui-text="Help">
+			<label appearance="header">Logging</label>
+			<param name="use-logging" type="boolean" gui-text="Use logging" indent="1">false</param>
+			<param name="overwrite-log" type="boolean" gui-text="Overwrite existing log file" indent="1">false</param>
+			<label indent="1">Log file path:</label>
+			<param name="log-path" type="path" mode="folder" gui-text="" indent="1"/>
+			<separator/>
+			<spacer/>
+
+		</page>
+	</param>
+
+	<effect needs-live-preview="false">
+		<object-type>all</object-type>
+		<effects-menu>
+			<submenu name="Export" />
+		</effects-menu>
+	</effect>
+
+    <script>
+        <command location="inx" interpreter="python">export-png-htm.py</command>
+    </script>
+	
+</inkscape-extension>
+
